@@ -1,0 +1,4 @@
+{
+    "paymentId": "186d2b31-ff25-4414-9fd1-bfe9807fa8b7",
+    "mobilePayAppRedirectUri": "mobilepay://merchant_payments?payment_id=186d2b31-ff25-4414-9fd1-bfe9807fa8b7"
+}

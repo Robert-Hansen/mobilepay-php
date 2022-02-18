@@ -1,36 +1,34 @@
 <?php
 
-namespace VendorName\Skeleton\Tests;
+namespace RobertHansen\MobilePay\Tests;
 
-use Illuminate\Database\Eloquent\Factories\Factory;
 use Orchestra\Testbench\TestCase as Orchestra;
-use VendorName\Skeleton\SkeletonServiceProvider;
+use RobertHansen\MobilePay\Facades\MobilePay;
+use RobertHansen\MobilePay\MobilePayServiceProvider;
 
 class TestCase extends Orchestra
 {
-    protected function setUp(): void
-    {
-        parent::setUp();
-
-        Factory::guessFactoryNamesUsing(
-            fn (string $modelName) => 'VendorName\\Skeleton\\Database\\Factories\\'.class_basename($modelName).'Factory'
-        );
-    }
-
-    protected function getPackageProviders($app)
+    protected function getPackageProviders($app): array
     {
         return [
-            SkeletonServiceProvider::class,
+            MobilePayServiceProvider::class,
         ];
     }
 
-    public function getEnvironmentSetUp($app)
+    protected function getEnvironmentSetUp($app): void
     {
-        config()->set('database.default', 'testing');
+        $app['config']->set('mobilepay', [
+            'uri' => 'https://mobilepay.test',
+            'api_key' => 'test',
+            'client_id' => 'test',
+            'timeout' => 10,
+        ]);
+    }
 
-        /*
-        $migration = include __DIR__.'/../database/migrations/create_skeleton_table.php.stub';
-        $migration->up();
-        */
+    protected function getPackageAliases($app): array
+    {
+        return [
+            'MobilePay' => MobilePay::class,
+        ];
     }
 }
