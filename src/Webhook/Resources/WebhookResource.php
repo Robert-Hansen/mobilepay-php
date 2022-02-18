@@ -13,7 +13,8 @@ class WebhookResource implements ResourceContract
 {
     public function __construct(
         private readonly ServiceContract $service,
-    ) {}
+    ) {
+    }
 
     public function service(): ServiceContract
     {
@@ -32,7 +33,7 @@ class WebhookResource implements ResourceContract
             throw new MobilePayRequestException(response: $response);
         }
 
-        return collect($response->json('webhooks'))->map(fn(array $webhook) => WebhookFactory::make(
+        return collect($response->json('webhooks'))->map(fn (array $webhook) => WebhookFactory::make(
             attributes: $webhook,
         ));
     }

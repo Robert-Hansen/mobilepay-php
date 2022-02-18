@@ -8,7 +8,8 @@ final class CapturePaymentRequest
 {
     public function __construct(
         public readonly int $amount,
-    ) {}
+    ) {
+    }
 
     public function toRequest(): array
     {

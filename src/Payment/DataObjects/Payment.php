@@ -23,7 +23,8 @@ final class Payment implements DataObjectContract
         public readonly CarbonImmutable $lastUpdatedOn,
         public readonly null|string $reference = null,
         public readonly null|string $description = null,
-    ) {}
+    ) {
+    }
 
     public function toArray(): array
     {
