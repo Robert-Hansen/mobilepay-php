@@ -22,7 +22,8 @@ class Factory implements ServiceContract
         public readonly int $timeout = 10,
         public readonly null|int $retryTimes = null,
         public readonly null|int $retrySleep = null,
-    ) {}
+    ) {
+    }
 
     public function makeRequest(): PendingRequest
     {

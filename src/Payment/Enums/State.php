@@ -15,8 +15,7 @@ enum State: string
 
     public function description(): string
     {
-        return match($this)
-        {
+        return match ($this) {
             self::INITIATED => 'initial state.',
             self::RESERVED => 'MobilePay user approved payment, ready to be captured.',
             self::CAPTURED => 'final state, funds will be transferred during next settlement.',

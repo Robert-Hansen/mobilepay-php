@@ -13,7 +13,8 @@ final class CreatePaymentRequest
         public readonly string $redirectUri,
         public readonly string $reference,
         public readonly string $description,
-    ) {}
+    ) {
+    }
 
     public function toRequest(): array
     {

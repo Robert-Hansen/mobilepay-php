@@ -17,7 +17,8 @@ class PaymentResource implements ResourceContract
 {
     public function __construct(
         private readonly ServiceContract $service,
-    ) {}
+    ) {
+    }
 
     public function service(): ServiceContract
     {
@@ -36,7 +37,7 @@ class PaymentResource implements ResourceContract
             throw new MobilePayRequestException(response: $response);
         }
 
-        return collect($response->json('payments'))->map(fn(array $payment) => PaymentFactory::make(
+        return collect($response->json('payments'))->map(fn (array $payment) => PaymentFactory::make(
             attributes: $payment,
         ));
     }

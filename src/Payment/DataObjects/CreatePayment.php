@@ -11,7 +11,8 @@ final class CreatePayment implements DataObjectContract
     public function __construct(
         public readonly string $paymentId,
         public readonly string $mobilePayAppRedirectUri,
-    ) {}
+    ) {
+    }
 
     public function toArray(): array
     {
