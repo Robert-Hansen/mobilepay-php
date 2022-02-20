@@ -92,10 +92,10 @@ $refund = MobilePay::refunds()->create(requestBody: $requestBody);
 ### Webhooks
 ```php
 // list of webhooks
-$webhooks = MobilePay::webhooks()->list();
+$webhooks = MobilePay::webhooks()->get();
 
 // get a single webhook
-$webhook = MobilePay::webhooks()->get(webhookId: '76385cef-5f92-ec11-908e-00505686acfb');
+$webhook = MobilePay::webhooks()->find(webhookId: '76385cef-5f92-ec11-908e-00505686acfb');
 
 // create webhook
 $requestBody = new CreateWebhookRequest(

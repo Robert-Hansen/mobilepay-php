@@ -1,0 +1,30 @@
+{
+    "pageSize": 1,
+    "nextPageNumber": 2,
+    "webhooks": [
+        {
+            "webhookId": "e4a2e195-74f6-42e1-a172-83291c9d2a41",
+            "url": "https://example.org/webhook",
+            "events": [
+                "payment.reserved"
+            ],
+            "signatureKey": "my-secure-signature-key"
+        },
+        {
+            "webhookId": "df76c5ad-697f-42e9-95d0-d847f3c5a169",
+            "url": "https://example.org/webhook-2",
+            "events": [
+                "payment.reserved"
+            ],
+            "signatureKey": "my-secure-signature-key-2"
+        },
+        {
+            "webhookId": "02eeccb8-d6cb-4428-9244-d3d89825d73f",
+            "url": "https://example.org/webhook-3",
+            "events": [
+                "payment.reserved"
+            ],
+            "signatureKey": "my-secure-signature-key-3"
+        }
+    ]
+}

@@ -26,7 +26,7 @@ class WebhookResource implements ResourceContract
     /**
      * @throws MobilePayRequestException
      */
-    public function list(): Collection
+    public function get(): Collection
     {
         $request = $this->service()->makeRequest();
         $response = $request->get(url: "v1/webhooks");
@@ -43,7 +43,7 @@ class WebhookResource implements ResourceContract
     /**
      * @throws MobilePayRequestException
      */
-    public function get(string $webhookId): Webhook
+    public function find(string $webhookId): Webhook
     {
         $request = $this->service()->makeRequest();
         $response = $request->get(url: "v1/webhooks/$webhookId");

@@ -14,8 +14,8 @@ use RobertHansen\MobilePay\Webhook\Resources\WebhookResource;
 /**
  * @method static PendingRequest makeRequest()
  * @method static PaymentResource payments()
- * @method static WebhookResource webhooks()
  * @method static RefundResource refunds()
+ * @method static WebhookResource webhooks()
  *
  * @see Factory
  */
