@@ -1,11 +1,11 @@
-# mobilepay-php
+# MobilePay for PHP
 
 [![Latest Version on Packagist](https://img.shields.io/packagist/v/robert-hansen/mobilepay-php.svg?style=flat-square)](https://packagist.org/packages/robert-hansen/mobilepay-php)
 [![GitHub Tests Action Status](https://img.shields.io/github/workflow/status/robert-hansen/mobilepay-php/run-tests?label=tests)](https://github.com/robert-hansen/mobilepay-php/actions?query=workflow%3Arun-tests+branch%3Amain)
 [![GitHub Code Style Action Status](https://img.shields.io/github/workflow/status/robert-hansen/mobilepay-php/Check%20&%20fix%20styling?label=code%20style)](https://github.com/robert-hansen/mobilepay-php/actions?query=workflow%3A"Check+%26+fix+styling"+branch%3Amain)
 [![Total Downloads](https://img.shields.io/packagist/dt/robert-hansen/mobilepay-php.svg?style=flat-square)](https://packagist.org/packages/robert-hansen/mobilepay-php)
 
-This is where your description should go. Limit it to a paragraph or two. Consider adding a small example.
+MobilePay API for Laravel 9.x
 
 ## Installation
 
@@ -21,19 +21,44 @@ You can publish the config file with:
 php artisan vendor:publish --tag="mobilepay-php-config"
 ```
 
-This is the contents of the published config file:
+Just set the below environment variables in your .env.
 
-```php
-return [
-];
+```
+MOBILEPAY_CLIENT_ID=
+MOBILEPAY_API_KEY=
+MOBILEPAY_PAYMENT_POINT_ID=
+MOBILEPAY_WEBHOOK_SIGNATURE_KEY=
 ```
 
 ## Usage
 
 ```php
-$mobilePay = app(MobilePay::class);
 
-$payments = $mobilePay->payments()->list();
+// list of payments
+$payments = MobilePay::payments()->list();
+
+// get a single payment
+$payment = MobilePay::payments()->get(paymentId: $paymentId);
+
+// create payment
+$requestBody = new CreatePaymentRequest(
+    amount: 1050,
+    idempotencyKey: '186d2b31-ff25-4414-9fd1-bfe9807fa8b7',
+    redirectUri: 'myapp://redirect',
+    reference: 'order-1',
+    description: 'this is a test description',
+);
+
+$payment = MobilePay::payments()->create(requestBody: $requestBody);
+
+
+//cancel payment
+MobilePay::payments()->cancel(paymentId: "09d6772e-8ac0-4738-9f9c-a2a1891c1a26");
+
+// capture payment
+$requestBody = new CapturePaymentRequest(1000);
+
+MobilePay::payments()->capture(paymentId: "9a4d52cf-c994-42b6-8995-61e4598514e5", requestBody: $requestBody);
 ```
 
 ## Testing
