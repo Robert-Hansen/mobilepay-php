@@ -8,12 +8,14 @@ use Illuminate\Http\Client\PendingRequest;
 use Illuminate\Support\Facades\Facade;
 use RobertHansen\MobilePay\Client\Factory;
 use RobertHansen\MobilePay\Payment\Resources\PaymentResource;
+use RobertHansen\MobilePay\Refund\Resources\RefundResource;
 use RobertHansen\MobilePay\Webhook\Resources\WebhookResource;
 
 /**
  * @method static PendingRequest makeRequest()
  * @method static PaymentResource payments()
  * @method static WebhookResource webhooks()
+ * @method static RefundResource refunds()
  *
  * @see Factory
  */

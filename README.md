@@ -60,6 +60,22 @@ $requestBody = new CapturePaymentRequest(amount: 1000);
 MobilePay::payments()->capture(paymentId: "9a4d52cf-c994-42b6-8995-61e4598514e5", requestBody: $requestBody);
 
 
+// list refunds
+$listOptions = new ListOptionsFilter(
+    pageSize: 10,
+    pageNumber: 1,
+    paymentId: "223dbe4e-2d3b-4484-b870-6c86cff2c07b",
+    paymentPointId: "4741751c-2935-41f1-a743-0b960f668869",
+    createdBefore: CarbonImmutable::now(),
+    createdAfter: CarbonImmutable::now()->subMonth(),
+);
+
+$refunds = MobilePay::refunds()->list(listOptions: $listOptions);
+
+// get a single refund
+$refund = MobilePay::refunds()->get(refundId: "4741751c-2935-41f1-a743-0b960f668869");
+
+
 // list of webhooks
 $webhooks = MobilePay::webhooks()->list();
 

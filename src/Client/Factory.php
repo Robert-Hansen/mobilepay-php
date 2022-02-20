@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\Http;
 use RobertHansen\MobilePay\Concerns\CanBeFaked;
 use RobertHansen\MobilePay\Contracts\ServiceContract;
 use RobertHansen\MobilePay\Payment\Resources\PaymentResource;
+use RobertHansen\MobilePay\Refund\Resources\RefundResource;
 use RobertHansen\MobilePay\Webhook\Resources\WebhookResource;
 
 class Factory implements ServiceContract
@@ -49,5 +50,10 @@ class Factory implements ServiceContract
     public function webhooks(): WebhookResource
     {
         return new WebhookResource(service: $this);
+    }
+
+    public function refunds(): RefundResource
+    {
+        return new RefundResource(service: $this);
     }
 }
