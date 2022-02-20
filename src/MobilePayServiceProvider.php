@@ -21,7 +21,7 @@ class MobilePayServiceProvider extends PackageServiceProvider
     {
         $this->app->singleton(
             abstract:'MobilePay',
-            concrete: fn(Container $container) => (new MobilePayManager($container['config']))->make(),
+            concrete: fn (Container $container) => (new MobilePayManager($container['config']))->make(),
         );
     }
 }

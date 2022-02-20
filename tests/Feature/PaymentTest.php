@@ -23,7 +23,7 @@ it('can get a single payment', function () {
         '*/v1/payments/*' => Http::response(
             body: fixture(folder: 'Payment', name: 'Payment'),
             status: Response::HTTP_OK,
-        )
+        ),
     ]);
 
     $payment = MobilePay::payments()->get(paymentId: '186d2b31-ff25-4414-9fd1-bfe9807fa8b7');
@@ -53,7 +53,7 @@ it('can create a new payment', function () {
         '/v1/payments' => Http::response(
             body: fixture(folder: 'Payment', name: 'CreatePayment'),
             status: Response::HTTP_OK,
-        )
+        ),
     ]);
 
     $createPayment = MobilePay::payments()->create(

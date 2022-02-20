@@ -13,7 +13,8 @@ final class Webhook implements DataObjectContract
         public readonly string $url,
         public readonly array $events,
         public readonly string $signatureKey,
-    ) {}
+    ) {
+    }
 
     public function toArray(): array
     {
