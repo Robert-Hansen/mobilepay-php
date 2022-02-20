@@ -2,6 +2,7 @@
 
 namespace RobertHansen\MobilePay\Payment\Resources;
 
+use Illuminate\Http\Client\Response;
 use Illuminate\Support\Collection;
 use RobertHansen\MobilePay\Contracts\ResourceContract;
 use RobertHansen\MobilePay\Contracts\ServiceContract;
@@ -17,7 +18,6 @@ use RobertHansen\MobilePay\Payment\Factories\CreatePaymentFactory;
 use RobertHansen\MobilePay\Payment\Factories\PaymentFactory;
 use RobertHansen\MobilePay\Payment\Requests\CapturePaymentRequest;
 use RobertHansen\MobilePay\Payment\Requests\CreatePaymentRequest;
-use Illuminate\Http\Client\Response;
 
 class PaymentResource implements ResourceContract
 {
