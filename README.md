@@ -35,10 +35,10 @@ MOBILEPAY_WEBHOOK_SIGNATURE_KEY=
 ### Payments
 ```php
 // list of payments
-$payments = MobilePay::payments()->list();
+$payments = MobilePay::payments()->get();
 
 // get a single payment
-$payment = MobilePay::payments()->get(paymentId: $paymentId);
+$payment = MobilePay::payments()->find(paymentId: $paymentId);
 
 // create payment
 $requestBody = new CreatePaymentRequest(

@@ -28,7 +28,7 @@ class PaymentResource implements ResourceContract
     /**
      * @throws MobilePayRequestException
      */
-    public function list(): Collection
+    public function get(): Collection
     {
         $request = $this->service()->makeRequest();
         $response = $request->get(url: "v1/payments");
@@ -45,7 +45,7 @@ class PaymentResource implements ResourceContract
     /**
      * @throws MobilePayRequestException
      */
-    public function get(string $paymentId): Payment
+    public function find(string $paymentId): Payment
     {
         $request = $this->service()->makeRequest();
         $response = $request->get(url: "v1/payments/$paymentId");

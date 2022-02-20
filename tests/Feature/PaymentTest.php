@@ -15,23 +15,10 @@ use RobertHansen\MobilePay\Payment\Resources\PaymentResource;
 use Symfony\Component\HttpFoundation\Response;
 
 it('can get a payment resource', function () {
-    expect(MobilePay::payments())->toBeInstanceOf(PaymentResource::class);
+    expect(value: MobilePay::payments())->toBeInstanceOf(class: PaymentResource::class);
 });
 
-it('can get a single payment', function () {
-    Factory::fake([
-        '*/v1/payments/*' => Http::response(
-            body: fixture(folder: 'Payment', name: 'Payment'),
-            status: Response::HTTP_OK,
-        ),
-    ]);
-
-    $payment = MobilePay::payments()->get(paymentId: '186d2b31-ff25-4414-9fd1-bfe9807fa8b7');
-
-    expect($payment)->toBeInstanceOf(Payment::class)->paymentId->toEqual('186d2b31-ff25-4414-9fd1-bfe9807fa8b7');
-});
-
-it('can fetch payments', function () {
+it('can get payments', function () {
     Factory::fake([
         '*/v1/payments' => Http::response(
             body:fixture(folder: 'Payment', name: 'Payments'),
@@ -39,13 +26,26 @@ it('can fetch payments', function () {
         ),
     ]);
 
-    $payments = MobilePay::payments()->list();
+    $payments = MobilePay::payments()->get();
 
-    expect($payments)->toBeInstanceOf(Collection::class);
+    expect(value: $payments)->toBeInstanceOf(class: Collection::class);
 
     $payments->each(function (Payment $payment) {
-        expect($payment)->toBeInstanceOf(Payment::class);
+        expect(value: $payment)->toBeInstanceOf(class: Payment::class);
     });
+});
+
+it('can find a payment', function () {
+    Factory::fake([
+        '*/v1/payments/186d2b31-ff25-4414-9fd1-bfe9807fa8b7' => Http::response(
+            body: fixture(folder: 'Payment', name: 'Payment'),
+            status: Response::HTTP_OK,
+        ),
+    ]);
+
+    $payment = MobilePay::payments()->find(paymentId: '186d2b31-ff25-4414-9fd1-bfe9807fa8b7');
+
+    expect(value: $payment)->toBeInstanceOf(class: Payment::class)->paymentId->toEqual(expected: '186d2b31-ff25-4414-9fd1-bfe9807fa8b7');
 });
 
 it('can create a new payment', function () {
@@ -66,9 +66,9 @@ it('can create a new payment', function () {
         ),
     );
 
-    expect($createPayment)->toBeInstanceOf(CreatePayment::class)->paymentId->toEqual('186d2b31-ff25-4414-9fd1-bfe9807fa8b7');
+    expect(value: $createPayment)->toBeInstanceOf(class: CreatePayment::class)->paymentId->toEqual(expected: '186d2b31-ff25-4414-9fd1-bfe9807fa8b7');
 });
 
 it('can create a new payment resource manually', function () {
-    expect(new PaymentResource(service: resolve('MobilePay')))->toBeInstanceOf(PaymentResource::class);
+    expect(value: new PaymentResource(service: resolve('MobilePay')))->toBeInstanceOf(class: PaymentResource::class);
 });
