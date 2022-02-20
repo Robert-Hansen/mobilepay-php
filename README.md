@@ -72,10 +72,10 @@ $listOptions = new ListOptionsFilter(
     createdAfter: CarbonImmutable::now()->subMonth(),
 );
 
-$refunds = MobilePay::refunds()->list(listOptions: $listOptions);
+$refunds = MobilePay::refunds()->get(listOptions: $listOptions);
 
 // get a single refund
-$refund = MobilePay::refunds()->get(refundId: "4741751c-2935-41f1-a743-0b960f668869");
+$refund = MobilePay::refunds()->find(refundId: "4741751c-2935-41f1-a743-0b960f668869");
 
 // create a refund
 $requestBody = new CreateRefundRequest(

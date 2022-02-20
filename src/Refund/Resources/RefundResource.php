@@ -26,7 +26,7 @@ class RefundResource implements ResourceContract
     /**
      * @throws MobilePayRequestException
      */
-    public function list(ListOptionsFilter $listOptions = new ListOptionsFilter()): Collection
+    public function get(ListOptionsFilter $listOptions = new ListOptionsFilter()): Collection
     {
         $listOptions = $listOptions->toQuery();
 
@@ -45,7 +45,7 @@ class RefundResource implements ResourceContract
     /**
      * @throws MobilePayRequestException
      */
-    public function get(string $refundId): Refund
+    public function find(string $refundId): Refund
     {
         $request = $this->service()->makeRequest();
         $response = $request->get(url: "v1/refunds/$refundId");
