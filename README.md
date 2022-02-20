@@ -66,6 +66,17 @@ $webhooks = MobilePay::webhooks()->list();
 // get a single webhook
 $webhook = MobilePay::webhooks()->get(webhookId: "76385cef-5f92-ec11-908e-00505686acfb");
 
+// create webhook
+$requestBody = new CreateWebhookRequest(
+    url: "https://example.org/webhook",
+    events: [
+        Event::PAYMENT_RESERVED,
+        Event::PAYMENT_EXPIRED,
+    ],
+);
+
+$webhook = MobilePay::webhooks()->create(requestBody: $requestBody);
+
 // update a webhook
 $requestBody = new UpdateWebhookRequest(
     url: "https://example.org/webhook",
