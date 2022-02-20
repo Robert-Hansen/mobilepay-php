@@ -86,8 +86,6 @@ class PaymentResource implements ResourceContract
         if ($response->failed()) {
             throw new MobilePayRequestException(response: $response);
         }
-
-        dd($response->json());
     }
 
     /**
@@ -101,7 +99,5 @@ class PaymentResource implements ResourceContract
         if ($response->failed()) {
             throw new MobilePayRequestException(response: $response);
         }
-
-        dd($response->json());
     }
 }

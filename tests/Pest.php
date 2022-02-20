@@ -4,11 +4,15 @@ use RobertHansen\MobilePay\Tests\TestCase;
 
 uses(TestCase::class)->in('Feature');
 
-function fixture(string $name): array
+function fixture(string|null $folder, string $name): array
 {
-    $file = file_get_contents(
-        filename: __DIR__ . DIRECTORY_SEPARATOR . 'Fixtures' . DIRECTORY_SEPARATOR . "$name.json",
-    );
+    $path = __DIR__ . DIRECTORY_SEPARATOR . 'Fixtures' . DIRECTORY_SEPARATOR;
+
+    if (!is_null($folder)) {
+        $path .= $folder . DIRECTORY_SEPARATOR;
+    }
+
+    $file = file_get_contents(filename: $path . "$name.json");
 
     if(! $file) {
         throw new InvalidArgumentException(

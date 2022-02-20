@@ -15,13 +15,13 @@ use RobertHansen\MobilePay\Payment\Resources\PaymentResource;
 use Symfony\Component\HttpFoundation\Response;
 
 it('can get a payment resource', function () {
-    expect(MobilePay::payments(),)->toBeInstanceOf(PaymentResource::class);
+    expect(MobilePay::payments())->toBeInstanceOf(PaymentResource::class);
 });
 
 it('can get a single payment', function () {
     Factory::fake([
         '*/v1/payments/*' => Http::response(
-            body: fixture('Payment/Payment'),
+            body: fixture(folder: 'Payment', name: 'Payment'),
             status: Response::HTTP_OK,
         )
     ]);
@@ -34,7 +34,7 @@ it('can get a single payment', function () {
 it('can fetch payments', function () {
     Factory::fake([
         '*/v1/payments' => Http::response(
-            body: fixture('Payment\Payments'),
+            body:fixture(folder: 'Payment', name: 'Payments'),
             status: Response::HTTP_OK,
         ),
     ]);
@@ -51,7 +51,7 @@ it('can fetch payments', function () {
 it('can create a new payment', function () {
     Factory::fake([
         '/v1/payments' => Http::response(
-            body: fixture('Payment/CreatePayment'),
+            body: fixture(folder: 'Payment', name: 'CreatePayment'),
             status: Response::HTTP_OK,
         )
     ]);
@@ -60,7 +60,6 @@ it('can create a new payment', function () {
         requestBody: new CreatePaymentRequest(
             amount: 1050,
             idempotencyKey: '7347ba06-95c5-4181-82e5-7c7a23609a0e',
-            paymentPointId: '655ad36f-70b0-4add-a123-b943daca50e8',
             redirectUri: 'myapp://redirect',
             reference: 'order-1',
             description: 'this is a test description',

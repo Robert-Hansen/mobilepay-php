@@ -9,7 +9,6 @@ final class CreatePaymentRequest
     public function __construct(
         public readonly int $amount,
         public readonly string $idempotencyKey,
-        public readonly string $paymentPointId,
         public readonly string $redirectUri,
         public readonly string $reference,
         public readonly string $description,
@@ -20,7 +19,7 @@ final class CreatePaymentRequest
         return [
             'amount' => $this->amount,
             'idempotencyKey' => $this->idempotencyKey,
-            'paymentPointId' => $this->paymentPointId,
+            'paymentPointId' => config('mobilepay.payment_point_id'),
             'redirectUri' => $this->redirectUri,
             'reference' => $this->reference,
             'description' => $this->description,
