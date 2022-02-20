@@ -8,7 +8,7 @@ function fixture(string|null $folder, string $name): array
 {
     $path = __DIR__ . DIRECTORY_SEPARATOR . 'Fixtures' . DIRECTORY_SEPARATOR;
 
-    if (!is_null($folder)) {
+    if (! is_null($folder)) {
         $path .= $folder . DIRECTORY_SEPARATOR;
     }
 
