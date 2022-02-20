@@ -7,12 +7,12 @@ namespace RobertHansen\MobilePay\Tests\Feature;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Http;
 use RobertHansen\MobilePay\Client\Factory;
+use RobertHansen\MobilePay\Enums\Http\StatusCode;
 use RobertHansen\MobilePay\Facades\MobilePay;
 use RobertHansen\MobilePay\Payment\DataObjects\CreatePayment;
 use RobertHansen\MobilePay\Payment\DataObjects\Payment;
 use RobertHansen\MobilePay\Payment\Requests\CreatePaymentRequest;
 use RobertHansen\MobilePay\Payment\Resources\PaymentResource;
-use Symfony\Component\HttpFoundation\Response;
 
 it('can get a payment resource', function () {
     expect(value: MobilePay::payments())->toBeInstanceOf(class: PaymentResource::class);
@@ -22,7 +22,7 @@ it('can get payments', function () {
     Factory::fake([
         '*/v1/payments' => Http::response(
             body:fixture(folder: 'Payment', name: 'Payments'),
-            status: Response::HTTP_OK,
+            status: StatusCode::HTTP_OK->value,
         ),
     ]);
 
@@ -39,7 +39,7 @@ it('can find a payment', function () {
     Factory::fake([
         '*/v1/payments/186d2b31-ff25-4414-9fd1-bfe9807fa8b7' => Http::response(
             body: fixture(folder: 'Payment', name: 'Payment'),
-            status: Response::HTTP_OK,
+            status: StatusCode::HTTP_OK->value,
         ),
     ]);
 
@@ -52,7 +52,7 @@ it('can create a new payment', function () {
     Factory::fake([
         '/v1/payments' => Http::response(
             body: fixture(folder: 'Payment', name: 'CreatePayment'),
-            status: Response::HTTP_OK,
+            status: StatusCode::HTTP_OK->value,
         ),
     ]);
 
