@@ -6,8 +6,13 @@ use Illuminate\Support\Collection;
 use RobertHansen\MobilePay\Contracts\ResourceContract;
 use RobertHansen\MobilePay\Contracts\ServiceContract;
 use RobertHansen\MobilePay\Exceptions\MobilePayRequestException;
+use RobertHansen\MobilePay\Payment\DataObjects\CreatePayment;
+use RobertHansen\MobilePay\Payment\Factories\CreatePaymentFactory;
+use RobertHansen\MobilePay\Payment\Requests\CreatePaymentRequest;
 use RobertHansen\MobilePay\Webhook\DataObjects\Webhook;
 use RobertHansen\MobilePay\Webhook\Factories\WebhookFactory;
+use RobertHansen\MobilePay\Webhook\Requests\CreateWebhookRequest;
+use RobertHansen\MobilePay\Webhook\Requests\UpdateWebhookRequest;
 
 class WebhookResource implements ResourceContract
 {
@@ -53,5 +58,52 @@ class WebhookResource implements ResourceContract
         return WebhookFactory::make(
             attributes: (array) $response->json(),
         );
+    }
+
+    /**
+     * @throws MobilePayRequestException
+     */
+    public function create(CreateWebhookRequest $requestBody): Webhook
+    {
+        $request = $this->service()->makeRequest();
+        $response = $request->post(url: "v1/webhooks", data: $requestBody->toRequest());
+
+        if ($response->failed()) {
+            throw new MobilePayRequestException(response: $response);
+        }
+
+        return WebhookFactory::make(
+            attributes: (array) $response->json(),
+        );
+    }
+
+    /**
+     * @throws MobilePayRequestException
+     */
+    public function update(string $webhookId, UpdateWebhookRequest $requestBody): Webhook
+    {
+        $request = $this->service()->makeRequest();
+        $response = $request->put(url: "v1/webhooks/$webhookId", data: $requestBody->toRequest());
+
+        if ($response->failed()) {
+            throw new MobilePayRequestException(response: $response);
+        }
+
+        return WebhookFactory::make(
+            attributes: (array) $response->json(),
+        );
+    }
+
+    /**
+     * @throws MobilePayRequestException
+     */
+    public function delete(string $webhookId): void
+    {
+        $request = $this->service()->makeRequest();
+        $response = $request->delete(url: "v1/webhooks/$webhookId");
+
+        if ($response->failed()) {
+            throw new MobilePayRequestException(response: $response);
+        }
     }
 }

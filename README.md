@@ -51,14 +51,34 @@ $requestBody = new CreatePaymentRequest(
 
 $payment = MobilePay::payments()->create(requestBody: $requestBody);
 
-
 //cancel payment
 MobilePay::payments()->cancel(paymentId: "09d6772e-8ac0-4738-9f9c-a2a1891c1a26");
 
 // capture payment
-$requestBody = new CapturePaymentRequest(1000);
+$requestBody = new CapturePaymentRequest(amount: 1000);
 
 MobilePay::payments()->capture(paymentId: "9a4d52cf-c994-42b6-8995-61e4598514e5", requestBody: $requestBody);
+
+
+// list of webhooks
+$webhooks = MobilePay::webhooks()->list();
+
+// get a single webhook
+$webhook = MobilePay::webhooks()->get(webhookId: "76385cef-5f92-ec11-908e-00505686acfb");
+
+// update a webhook
+$requestBody = new UpdateWebhookRequest(
+    url: "https://example.org/webhook",
+    events: [
+        Event::PAYMENT_RESERVED,
+    ],
+);
+
+$webhook = MobilePay::webhooks()->update(webhookId: "76385cef-5f92-ec11-908e-00505686acfb", requestBody: $requestBody);
+
+// delete a webhook
+MobilePay::webhooks()->delete(webhookId: "76385cef-5f92-ec11-908e-00505686acfb");
+
 ```
 
 ## Testing
