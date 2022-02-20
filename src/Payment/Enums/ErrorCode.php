@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace RobertHansen\MobilePay\Payment\Enums;
 
-enum Error: string
+enum ErrorCode: string
 {
     case PROCESSING_ERROR = 'processing_error';
     case AMOUNT_TO_LARGE = 'amount_too_large';
