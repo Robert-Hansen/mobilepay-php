@@ -20,7 +20,8 @@ use RobertHansen\MobilePay\Support\Exceptions\UnauthorizedException;
 use RobertHansen\MobilePay\Support\Facades\MobilePay;
 
 it('can get a payment resource', function () {
-    expect(value: MobilePay::payments())->toBeInstanceOf(class: PaymentResource::class);
+    expect(value: MobilePay::payments())
+        ->toBeInstanceOf(class: PaymentResource::class);
 });
 
 it('can get payments', function () {
@@ -33,11 +34,9 @@ it('can get payments', function () {
 
     $payments = MobilePay::payments()->get();
 
-    expect(value: $payments)->toBeInstanceOf(class: Collection::class);
-
-    $payments->each(function (Payment $payment) {
-        expect(value: $payment)->toBeInstanceOf(class: Payment::class);
-    });
+    expect(value: $payments)
+        ->toBeInstanceOf(class: Collection::class)
+        ->each->toBeInstanceOf(class: Payment::class);
 });
 
 it('can find a payment', function () {
@@ -50,7 +49,9 @@ it('can find a payment', function () {
 
     $payment = MobilePay::payments()->find(paymentId: '186d2b31-ff25-4414-9fd1-bfe9807fa8b7');
 
-    expect(value: $payment)->toBeInstanceOf(class: Payment::class)->paymentId->toEqual(expected: '186d2b31-ff25-4414-9fd1-bfe9807fa8b7');
+    expect(value: $payment)
+        ->toBeInstanceOf(class: Payment::class)
+        ->paymentId->toEqual(expected: '186d2b31-ff25-4414-9fd1-bfe9807fa8b7');
 });
 
 it('can create a new payment', function () {
@@ -71,10 +72,12 @@ it('can create a new payment', function () {
         ),
     );
 
-    expect(value: $createPayment)->toBeInstanceOf(class: CreatePayment::class)->paymentId->toEqual(expected: '186d2b31-ff25-4414-9fd1-bfe9807fa8b7');
+    expect(value: $createPayment)
+        ->toBeInstanceOf(class: CreatePayment::class)
+        ->paymentId->toEqual(expected: '186d2b31-ff25-4414-9fd1-bfe9807fa8b7');
 });
 
-it('it cannot cancel a payment that is already captured', function () {
+it('cannot cancel a payment that is already captured', function () {
     MobilePay::fake([
         '/v1/payments/7347ba06-95c5-4181-82e5-7c7a23609a0e/cancel' => Http::response(
             body: [
@@ -90,7 +93,7 @@ it('it cannot cancel a payment that is already captured', function () {
     MobilePay::payments()->cancel(paymentId: '7347ba06-95c5-4181-82e5-7c7a23609a0e');
 })->throws(ConflictRequestException::class);
 
-it('it cannot capture payment amount that is larger than is reserved', function () {
+it('cannot capture payment amount that is larger than is reserved', function () {
     MobilePay::fake([
         '/v1/payments/7347ba06-95c5-4181-82e5-7c7a23609a0e/capture' => Http::response(
             body: [
@@ -109,7 +112,7 @@ it('it cannot capture payment amount that is larger than is reserved', function 
     );
 })->throws(ConflictRequestException::class);
 
-it('it unauthorized access', function () {
+it('test access to api unauthorized access', function () {
     MobilePay::fake([
         '/v1/payments' => Http::response(
             body: [
@@ -125,7 +128,7 @@ it('it unauthorized access', function () {
     MobilePay::payments()->get();
 })->throws(UnauthorizedException::class);
 
-it('it bad request', function () {
+it('test a bad request', function () {
     MobilePay::fake([
         '/v1/payments' => Http::response(
             body: [
@@ -141,7 +144,7 @@ it('it bad request', function () {
     MobilePay::payments()->get();
 })->throws(BadRequestException::class);
 
-it('it internal server error', function () {
+it('test a internal server error', function () {
     MobilePay::fake([
         '/v1/payments' => Http::response(
             body: [
@@ -174,5 +177,6 @@ it('throws MobilePayRequestException if there is no match', function () {
 })->throws(MobilePayRequestException::class);
 
 it('can create a new payment resource manually', function () {
-    expect(value: new PaymentResource(service: resolve('MobilePay')))->toBeInstanceOf(class: PaymentResource::class);
+    expect(value: new PaymentResource(service: resolve('MobilePay')))
+        ->toBeInstanceOf(class: PaymentResource::class);
 });
