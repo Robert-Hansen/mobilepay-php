@@ -40,11 +40,11 @@ it('can build create payment request body convert toRequest', function () {
 });
 
 it('will fail if create amount is less than 1', function () {
-     new CreatePaymentRequest(
-         amount: 0,
-         idempotencyKey: '186d2b31-ff25-4414-9fd1-bfe9807fa8b7',
-         redirectUri: 'myapp://redirect'
-     );
+    new CreatePaymentRequest(
+        amount: 0,
+        idempotencyKey: '186d2b31-ff25-4414-9fd1-bfe9807fa8b7',
+        redirectUri: 'myapp://redirect'
+    );
 })->throws(exception: ValidationException::class);
 
 it('will fail if create amount is greater than 2147483647', function () {

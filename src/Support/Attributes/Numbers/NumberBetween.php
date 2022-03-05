@@ -11,7 +11,9 @@ use Spatie\DataTransferObject\Validator;
 #[Attribute(Attribute::TARGET_PROPERTY | Attribute::IS_REPEATABLE)]
 class NumberBetween implements Validator
 {
-    public function __construct(private int $min, private int $max) {}
+    public function __construct(private int $min, private int $max)
+    {
+    }
 
     public function validate(mixed $value): ValidationResult
     {

@@ -7,7 +7,7 @@ use Spatie\DataTransferObject\DataTransferObject;
 use Spatie\DataTransferObject\Exceptions\ValidationException;
 
 it('test uuid is valid', function () {
-    $object = new class extends DataTransferObject {
+    $object = new class () extends DataTransferObject {
         #[Uuid]
         public string $id = '655ad36f-70b0-4add-a123-b943daca50e8';
     };
@@ -16,9 +16,8 @@ it('test uuid is valid', function () {
 });
 
 it('test invalid uuid', function () {
-    new class extends DataTransferObject {
+    new class () extends DataTransferObject {
         #[Uuid]
         public string $id = '5ad36f-70b0-4add-a123-b9430e';
     };
 })->throws(exception: ValidationException::class);
-

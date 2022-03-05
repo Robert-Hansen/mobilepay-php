@@ -35,7 +35,7 @@ final class Webhook implements DataObjectContract
         'webhook_id' => "string",
         'url' => "string",
         'events' => "array",
-        'signature_key' => "string"
+        'signature_key' => "string",
     ])]
     public function toArray(): array
     {

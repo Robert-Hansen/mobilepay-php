@@ -7,7 +7,7 @@ use Spatie\DataTransferObject\DataTransferObject;
 use Spatie\DataTransferObject\Exceptions\ValidationException;
 
 it('test number must be between defined min and max', function () {
-    $object = new class extends DataTransferObject {
+    $object = new class () extends DataTransferObject {
         #[NumberBetween(min: 1, max: 10)]
         public int $points = 5;
     };
@@ -16,9 +16,8 @@ it('test number must be between defined min and max', function () {
 });
 
 it('test number is not between defined min and max', function () {
-    new class extends DataTransferObject {
+    new class () extends DataTransferObject {
         #[NumberBetween(min: 1, max: 10)]
         public int $points = 20;
     };
 })->throws(exception: ValidationException::class);
-

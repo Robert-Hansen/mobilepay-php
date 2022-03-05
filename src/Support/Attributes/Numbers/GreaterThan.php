@@ -11,7 +11,9 @@ use Spatie\DataTransferObject\Validator;
 #[Attribute(Attribute::TARGET_PROPERTY | Attribute::IS_REPEATABLE)]
 class GreaterThan implements Validator
 {
-    public function __construct(private int $value) {}
+    public function __construct(private int $value)
+    {
+    }
 
     public function validate(mixed $value): ValidationResult
     {

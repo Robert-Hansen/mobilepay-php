@@ -7,7 +7,7 @@ use Spatie\DataTransferObject\DataTransferObject;
 use Spatie\DataTransferObject\Exceptions\ValidationException;
 
 it('test url is valid', function () {
-    $object = new class extends DataTransferObject {
+    $object = new class () extends DataTransferObject {
         #[Url]
         public string $url1 = 'https://example.org';
         #[Url]
@@ -20,7 +20,7 @@ it('test url is valid', function () {
 });
 
 it('test invalid url', function () {
-    new class extends DataTransferObject {
+    new class () extends DataTransferObject {
         #[Url]
         public string $url1 = 'https:://example.org';
         #[Url]
@@ -29,4 +29,3 @@ it('test invalid url', function () {
         public string $url3 = 'myapp://callback-';
     };
 })->throws(exception: ValidationException::class);
-

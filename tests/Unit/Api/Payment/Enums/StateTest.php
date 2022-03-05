@@ -5,7 +5,6 @@ declare(strict_types=1);
 use RobertHansen\MobilePay\Api\Payment\Enums\State;
 
 it('has the description of the states', function () {
-
     $states = [
         State::INITIATED,
         State::RESERVED,
@@ -19,4 +18,3 @@ it('has the description of the states', function () {
         ->toHaveCount(6)
         ->each(fn ($state) => $state->getDescription()->toBeString());
 });
-

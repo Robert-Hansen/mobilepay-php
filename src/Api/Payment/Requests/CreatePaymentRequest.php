@@ -57,7 +57,7 @@ final class CreatePaymentRequest extends DataTransferObject implements RequestCo
         'paymentPointId' => "\Illuminate\Config\Repository|\Illuminate\Contracts\Foundation\Application|mixed",
         'redirectUri' => "string",
         'reference' => "string",
-        'description' => "string"
+        'description' => "string",
     ])]
     public function toRequest(): array
     {

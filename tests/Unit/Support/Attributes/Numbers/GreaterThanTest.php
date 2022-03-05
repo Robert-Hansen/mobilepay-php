@@ -7,7 +7,7 @@ use Spatie\DataTransferObject\DataTransferObject;
 use Spatie\DataTransferObject\Exceptions\ValidationException;
 
 it('test value is greater than the value set', function () {
-    $object = new class extends DataTransferObject {
+    $object = new class () extends DataTransferObject {
         #[GreaterThan(value: 1)]
         public int $amount = 5;
     };
@@ -16,9 +16,8 @@ it('test value is greater than the value set', function () {
 });
 
 it('test value is less than the value set', function () {
-    new class extends DataTransferObject {
+    new class () extends DataTransferObject {
         #[GreaterThan(value: 10)]
         public int $amount = 1;
     };
 })->throws(exception: ValidationException::class);
-

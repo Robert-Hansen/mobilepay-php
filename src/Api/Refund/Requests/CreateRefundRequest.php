@@ -55,7 +55,7 @@ final class CreateRefundRequest extends DataTransferObject
         'amount' => "int",
         'idempotencyKey' => "string",
         'reference' => "string",
-        'description' => "string"
+        'description' => "string",
     ])]
     public function toRequest(): array
     {
