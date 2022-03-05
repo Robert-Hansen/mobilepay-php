@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace RobertHansen\MobilePay\Api\Webhook\DataObjects;
 
 use Illuminate\Support\Collection;
-use JetBrains\PhpStorm\ArrayShape;
 use RobertHansen\MobilePay\Support\Contracts\DataObjectContract;
 
 final class Webhook implements DataObjectContract
@@ -31,12 +30,6 @@ final class Webhook implements DataObjectContract
     ) {
     }
 
-    #[ArrayShape([
-        'webhook_id' => "string",
-        'url' => "string",
-        'events' => "array",
-        'signature_key' => "string",
-    ])]
     public function toArray(): array
     {
         return [
