@@ -2,8 +2,8 @@
 
 declare(strict_types=1);
 
-use RobertHansen\MobilePay\Support\Enums\ErrorCode;
 use RobertHansen\MobilePay\Support\DataObjects\Error;
+use RobertHansen\MobilePay\Support\Enums\ErrorCode;
 
 it('can build error data object', function () {
     $dataObject = new Error(
@@ -44,4 +44,3 @@ it('can build error data object convert it to array', function () {
             'origin',
         ]);
 });
-
