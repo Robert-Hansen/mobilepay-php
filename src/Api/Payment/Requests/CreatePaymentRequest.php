@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace RobertHansen\MobilePay\Api\Payment\Requests;
 
-use JetBrains\PhpStorm\ArrayShape;
 use RobertHansen\MobilePay\Support\Attributes\Numbers\NumberBetween;
 use RobertHansen\MobilePay\Support\Attributes\Strings\Length;
 use RobertHansen\MobilePay\Support\Attributes\Strings\Url;
@@ -51,14 +50,6 @@ final class CreatePaymentRequest extends DataTransferObject implements RequestCo
         parent::__construct(get_defined_vars());
     }
 
-    #[ArrayShape([
-        'amount' => "int",
-        'idempotencyKey' => "string",
-        'paymentPointId' => "\Illuminate\Config\Repository|\Illuminate\Contracts\Foundation\Application|mixed",
-        'redirectUri' => "string",
-        'reference' => "string",
-        'description' => "string",
-    ])]
     public function toRequest(): array
     {
         return [
