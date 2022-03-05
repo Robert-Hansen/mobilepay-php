@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace RobertHansen\MobilePay;
 
 use Illuminate\Contracts\Config\Repository;
-use RobertHansen\MobilePay\Client\Factory;
 
 class MobilePayManager
 {
@@ -16,9 +15,9 @@ class MobilePayManager
         $this->config = $config['mobilepay'];
     }
 
-    public function make(): Factory
+    public function make(): MobilePay
     {
-        return new Factory(
+        return new MobilePay(
             baseUri: strval($this->config['uri']),
             apiKey: strval($this->config['api_key']),
             clientId: strval($this->config['client_id']),

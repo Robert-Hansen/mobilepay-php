@@ -6,12 +6,11 @@ namespace RobertHansen\MobilePay\Tests\Feature;
 
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Http;
-use RobertHansen\MobilePay\Client\Factory;
-use RobertHansen\MobilePay\Facades\MobilePay;
-use RobertHansen\MobilePay\Refund\DataObjects\Refund;
-use RobertHansen\MobilePay\Refund\Filters\ListOptionsFilter;
-use RobertHansen\MobilePay\Refund\Requests\CreateRefundRequest;
-use RobertHansen\MobilePay\Refund\Resources\RefundResource;
+use RobertHansen\MobilePay\Api\Refund\DataObjects\Refund;
+use RobertHansen\MobilePay\Api\Refund\Filters\ListOptionsFilter;
+use RobertHansen\MobilePay\Api\Refund\Requests\CreateRefundRequest;
+use RobertHansen\MobilePay\Api\Refund\Resources\RefundResource;
+use RobertHansen\MobilePay\Support\Facades\MobilePay;
 use Symfony\Component\HttpFoundation\Response;
 
 it('can get a refund resource', function () {
@@ -19,7 +18,7 @@ it('can get a refund resource', function () {
 });
 
 it('can get refunds', function () {
-    Factory::fake([
+    MobilePay::fake([
         '*/v1/refunds?pageSize=10&pageNumber=1' => Http::response(
             body:fixture(folder: 'Refund', name: 'Refunds'),
             status: Response::HTTP_OK,
@@ -41,7 +40,7 @@ it('can get refunds', function () {
 });
 
 it('can find a refund', function () {
-    Factory::fake([
+    MobilePay::fake([
         '*/v1/refunds/7576910d-9789-4fef-a72e-877d89afec94' => Http::response(
             body: fixture(folder: 'Refund', name: 'Refund'),
             status: Response::HTTP_OK,
@@ -54,7 +53,7 @@ it('can find a refund', function () {
 });
 
 it('can create a new refund', function () {
-    Factory::fake([
+    MobilePay::fake([
         '/v1/refunds' => Http::response(
             body: fixture(folder: 'Refund', name: 'Refund'),
             status: Response::HTTP_OK,

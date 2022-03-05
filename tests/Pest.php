@@ -3,6 +3,7 @@
 use RobertHansen\MobilePay\Tests\TestCase;
 
 uses(TestCase::class)->in('Feature');
+uses(TestCase::class)->in('Unit');
 
 function fixture(string|null $folder, string $name): array
 {

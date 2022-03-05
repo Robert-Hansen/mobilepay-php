@@ -5,26 +5,35 @@
         {
             "refundId": "7576910d-9789-4fef-a72e-877d89afec94",
             "paymentId": "186d2b31-ff25-4414-9fd1-bfe9807fa8b7",
-            "amount": 1000,
-            "description": "Lorem ipsum",
-            "reference": "order-1",
-            "createdOn": "2021-07-19T12:42:38+00:00"
+            "amount": 1250,
+            "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+            "reference": "My-Refund-1",
+            "createdOn": "2021-07-19T12:42:38+00:00",
+            "paymentPointId": "7347ba06-95c5-4181-82e5-7c7a23609a0e",
+            "merchantId": "655ad36f-70b0-4add-a123-b943daca50e8",
+            "isoCurrencyCode": "DKK"
         },
         {
             "refundId": "b0bc7806-f22d-4ade-9cf9-39080c03a4be",
             "paymentId": "6c977a9b-a7a8-433e-9ea0-aebd003e09a2",
-            "amount": 2000,
-            "description": "Lorem ipsum",
-            "reference": "order-2",
-            "createdOn": "2021-07-19T12:42:38+00:00"
+            "amount": 1250,
+            "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+            "reference": "My-Refund-2",
+            "createdOn": "2021-07-19T12:42:38+00:00",
+            "paymentPointId": "7347ba06-95c5-4181-82e5-7c7a23609a0e",
+            "merchantId": "655ad36f-70b0-4add-a123-b943daca50e8",
+            "isoCurrencyCode": "DKK"
         },
         {
             "refundId": "cfc6cd90-91ae-4978-8d5a-3aa86578ea7a",
             "paymentId": "186d2b31-ff25-4414-9fd1-bfe9807fa8b7",
-            "amount": 3000,
-            "description": "Lorem ipsum",
-            "reference": "order-3",
-            "createdOn": "2021-07-19T12:42:38+00:00"
+            "amount": 1250,
+            "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+            "reference": "My-Refund-3",
+            "createdOn": "2021-07-19T12:42:38+00:00",
+            "paymentPointId": "7347ba06-95c5-4181-82e5-7c7a23609a0e",
+            "merchantId": "655ad36f-70b0-4add-a123-b943daca50e8",
+            "isoCurrencyCode": "DKK"
         }
     ]
 }

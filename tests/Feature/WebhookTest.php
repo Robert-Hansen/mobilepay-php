@@ -6,13 +6,12 @@ namespace RobertHansen\MobilePay\Tests\Feature;
 
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Http;
-use RobertHansen\MobilePay\Client\Factory;
-use RobertHansen\MobilePay\Facades\MobilePay;
-use RobertHansen\MobilePay\Webhook\DataObjects\Webhook;
-use RobertHansen\MobilePay\Webhook\Enums\Event;
-use RobertHansen\MobilePay\Webhook\Requests\CreateWebhookRequest;
-use RobertHansen\MobilePay\Webhook\Requests\UpdateWebhookRequest;
-use RobertHansen\MobilePay\Webhook\Resources\WebhookResource;
+use RobertHansen\MobilePay\Api\Webhook\DataObjects\Webhook;
+use RobertHansen\MobilePay\Api\Webhook\Enums\Event;
+use RobertHansen\MobilePay\Api\Webhook\Requests\CreateWebhookRequest;
+use RobertHansen\MobilePay\Api\Webhook\Requests\UpdateWebhookRequest;
+use RobertHansen\MobilePay\Api\Webhook\Resources\WebhookResource;
+use RobertHansen\MobilePay\Support\Facades\MobilePay;
 use Symfony\Component\HttpFoundation\Response;
 
 it('can get a webhook resource', function () {
@@ -20,7 +19,7 @@ it('can get a webhook resource', function () {
 });
 
 it('can get webhooks', function () {
-    Factory::fake([
+    MobilePay::fake([
         '*/v1/webhooks' => Http::response(
             body:fixture(folder: 'Webhook', name: 'Webhooks'),
             status: Response::HTTP_OK,
@@ -37,7 +36,7 @@ it('can get webhooks', function () {
 });
 
 it('can find a webhook', function () {
-    Factory::fake([
+    MobilePay::fake([
         '*/v1/webhooks/e4a2e195-74f6-42e1-a172-83291c9d2a41' => Http::response(
             body: fixture(folder: 'Webhook', name: 'Webhook'),
             status: Response::HTTP_OK,
@@ -50,7 +49,7 @@ it('can find a webhook', function () {
 });
 
 it('can create a new webhook', function () {
-    Factory::fake([
+    MobilePay::fake([
         '/v1/webhooks' => Http::response(
             body: fixture(folder: 'Webhook', name: 'Webhook'),
             status: Response::HTTP_OK,
@@ -71,7 +70,7 @@ it('can create a new webhook', function () {
 });
 
 it('can update a webhook', function () {
-    Factory::fake([
+    MobilePay::fake([
         '*/v1/webhooks/e4a2e195-74f6-42e1-a172-83291c9d2a41' => Http::response(
             body: fixture(folder: 'Webhook', name: 'Webhook'),
             status: Response::HTTP_OK,
@@ -93,7 +92,7 @@ it('can update a webhook', function () {
 });
 
 it('can delete a webhook', function () {
-    Factory::fake([
+    MobilePay::fake([
         '*/v1/webhooks/e4a2e195-74f6-42e1-a172-83291c9d2a41' => Http::response(status: Response::HTTP_NO_CONTENT),
     ]);
 
