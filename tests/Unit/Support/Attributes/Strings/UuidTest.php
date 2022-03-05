@@ -15,6 +15,22 @@ it('test uuid is valid', function () {
     expect(value: $object)->not->toThrow(exception: ValidationException::class);
 });
 
+it('test uuid is nullable', function () {
+    $object = new class () extends DataTransferObject {
+        #[Uuid(nullable: true)]
+        public ?string $id = null;
+    };
+
+    expect(value: $object)->not->toThrow(exception: ValidationException::class);
+});
+
+it('test uuid is not nullable', function () {
+    new class () extends DataTransferObject {
+        #[Uuid(nullable: false)]
+        public ?string $id = null;
+    };
+})->throws(exception: ValidationException::class);
+
 it('test invalid uuid', function () {
     new class () extends DataTransferObject {
         #[Uuid]
